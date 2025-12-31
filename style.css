@@ -1,0 +1,498 @@
+/* assets/css/style.css 
+   Wersja MODERN 2.0 - Szlachetne Złoto & Glassmorphism
+*/
+
+/* --- 1. ZMIENNE I KONFIGURACJA --- */
+:root {
+    /* Paleta Kolorów */
+    --c-bg-main: #050505;       /* Głęboka czerń */
+    --c-bg-card: #141414;       /* Tło kart (baza) */
+    
+    /* Kolory Tekstu */
+    --c-text-primary: #f2f2f2;  
+    --c-text-muted: #a0a0a0;    
+
+    /* Akcenty */
+    /* Zmieniony żółty: bardziej miodowy, mniej neonowy (#FFC107 -> #E1B12C) */
+    --c-gold: #E1B12C;          
+    /* Subtelniejszy border (złoty z dużą przezroczystością) */
+    --c-gold-dim: rgba(225, 177, 44, 0.15); 
+
+    --c-orange: #E67E00;        /* Nieco ciemniejszy, elegancki pomarańcz */
+    --c-border: rgba(255, 255, 255, 0.08); /* Bardzo subtelne linie */
+
+    /* Typografia */
+    --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --font-head: 'Georgia', serif; 
+
+    /* Wymiary i efekty (Modern UI) */
+    --nav-height: 80px;
+    --radius: 12px;             /* Większe zaokrąglenia */
+    --shadow-soft: 0 8px 30px rgba(0,0,0,0.5); /* Miękki cień */
+    --shadow-glow: 0 0 15px rgba(225, 177, 44, 0.15); /* Złota poświata */
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Płynniejsza animacja */
+    
+    /* Tło gradientowe dla kart - efekt premium */
+    --bg-gradient: linear-gradient(145deg, #161616 0%, #0f0f0f 100%);
+}
+
+/* --- 2. RESET I FUNDAMENTY --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--c-bg-main);
+    color: var(--c-text-primary);
+    font-family: var(--font-main);
+    line-height: 1.7; /* Nieco więcej powietrza w tekście */
+    padding-top: var(--nav-height);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Subtelne tło 'szum' dla tekstury (opcjonalne, dodaje charakteru) */
+    background-image: radial-gradient(circle at top center, #1a1a1a 0%, #050505 60%);
+    background-attachment: fixed;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+/* --- 3. NAWIGACJA (GLASSMORPHISM) --- */
+nav {
+    background-color: rgba(5, 5, 5, 0.85); /* Bardziej przezroczyste */
+    border-bottom: 1px solid var(--c-border);
+    height: var(--nav-height);
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(12px); /* Rozmycie tła pod menu */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-head);
+    font-size: 1.6rem;
+    color: var(--c-gold);
+    font-weight: bold;
+    display: flex; align-items: center; gap: 12px;
+    text-shadow: 0 2px 10px rgba(225, 177, 44, 0.2);
+}
+
+.logo img { height: 42px; filter: drop-shadow(0 0 5px rgba(225,177,44,0.3)); }
+
+.menu { display: flex; gap: 30px; }
+
+.menu li a {
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--c-text-muted);
+    position: relative;
+    padding: 5px 0;
+}
+
+.menu li a:hover,
+.menu li a.active {
+    color: var(--c-gold);
+}
+
+/* Nowoczesny efekt podkreślenia (kropka zamiast linii lub krótka linia) */
+.menu li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--c-gold);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+    box-shadow: 0 0 8px var(--c-gold);
+}
+
+.menu li a:hover::after,
+.menu li a.active::after {
+    width: 20px; /* Krótka, stylowa kreska */
+}
+
+.nav-actions { display: none !important; }
+
+/* --- 4. GŁÓWNY UKŁAD --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px; /* Więcej oddechu */
+    width: 100%;
+}
+
+.section-title {
+    text-align: center;
+    font-family: var(--font-head);
+    font-size: 2.8rem;
+    margin-bottom: 50px;
+    color: var(--c-gold);
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+/* Ozdobnik pod tytułem */
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--c-orange);
+    margin: 15px auto 0;
+    border-radius: 2px;
+    box-shadow: 0 0 10px var(--c-orange);
+}
+
+/* --- 5. ELEMENTY UI (Karty, Przyciski) --- */
+
+/* Przycisk Główny (Modern Gradient) */
+.btn-main {
+    background: linear-gradient(135deg, var(--c-orange) 0%, #c26a00 100%);
+    color: #fff;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 50px; /* Pill shape */
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1.2px;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(230, 126, 0, 0.25);
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-main:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(230, 126, 0, 0.4);
+    filter: brightness(1.1);
+}
+
+/* Karty (Modern Dark Cards) */
+.card, .section-feature {
+    background: var(--bg-gradient);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    padding: 35px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtelny "shine" effect na kartach */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at top right, rgba(255,255,255,0.03), transparent 40%);
+    pointer-events: none;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(225, 177, 44, 0.3);
+    box-shadow: var(--shadow-glow);
+}
+
+.card h3 {
+    margin: 20px 0 10px;
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: 600;
+}
+
+.card p { color: var(--c-text-muted); font-size: 0.95rem; }
+
+/* Sekcja Cech (Listy) */
+.section-feature {
+    margin-bottom: 25px;
+    border-left: 4px solid var(--c-gold);
+    background: #0f0f0f; /* Nieco ciemniejsze od kart produktów */
+}
+
+.section-feature:hover {
+    background: #141414;
+    transform: translateX(10px);
+}
+
+.section-feature h3 { color: var(--c-gold); margin-bottom: 8px; }
+
+/* Grid Produktów */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Szersze karty */
+    gap: 40px;
+}
+
+.modal-img-box i {
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.1));
+    transition: transform 0.3s;
+}
+.card:hover .modal-img-box i {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* --- 6. MODAL (GLASSY OVERLAY) --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px); /* Mocniejsze rozmycie tła strony */
+}
+
+.modal-content {
+    background: #121212;
+    background: linear-gradient(160deg, #1a1a1a, #0a0a0a);
+    margin: 5% auto;
+    padding: 50px;
+    border: 1px solid var(--c-gold-dim);
+    width: 90%;
+    max-width: 800px;
+    border-radius: 20px; /* Bardziej okrągły */
+    position: relative;
+    color: var(--c-text-primary);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+}
+
+.close-modal {
+    position: absolute;
+    right: 25px; top: 20px;
+    color: var(--c-text-muted);
+    font-size: 32px;
+    line-height: 1;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-modal:hover { color: var(--c-orange); transform: rotate(90deg); }
+
+.modal-grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.modal-price {
+    color: var(--c-gold);
+    font-weight: 700;
+    font-size: 1.8rem;
+    display: block;
+    margin: 15px 0 25px;
+    text-shadow: 0 0 10px rgba(225, 177, 44, 0.2);
+}
+
+/* Ukrycie kontrolek ilości w modalu */
+.qty-control { display: none !important; }
+
+/* --- 7. LINK MENU (BUTTONY JAKO Widgety) --- */
+.links-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+.link-button {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 22px;
+    background-color: #141414;
+    border: 1px solid var(--c-border);
+    border-radius: 16px; /* Nowoczesne, mocne zaokrąglenie */
+    color: var(--c-text-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.link-button i {
+    font-size: 1.6rem;
+    width: 50px;
+    text-align: center;
+    margin-right: 15px;
+    color: var(--c-gold);
+    transition: 0.3s;
+}
+
+.link-button:hover {
+    background-color: #1a1a1a;
+    border-color: var(--c-gold);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4), 0 0 15px var(--c-gold-dim);
+}
+
+.link-button:hover i {
+    transform: scale(1.2);
+    color: #fff;
+    text-shadow: 0 0 10px var(--c-gold);
+}
+
+/* --- 8. NEWSLETTER (FLOATING WIDGET) --- */
+.newsletter-box {
+    position: fixed;
+    bottom: 30px; right: 30px;
+    background: rgba(20, 20, 20, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    max-width: 360px;
+    width: 100%;
+    border: 1px solid var(--c-gold-dim);
+    border-radius: 16px;
+    z-index: 999;
+    box-shadow: var(--shadow-soft);
+    transition: opacity 0.4s, transform 0.4s;
+    transform-origin: bottom right;
+}
+
+.newsletter-box.hidden {
+    display: none;
+}
+
+.newsletter-close {
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--c-text-muted);
+}
+.newsletter-close:hover { color: var(--c-orange); }
+
+/* --- 9. STOPKA (CLEAN & MINIMAL) --- */
+footer {
+    background-color: #020202; /* Prawie czarny */
+    border-top: 1px solid var(--c-border);
+    padding-top: 80px;
+    margin-top: auto;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+}
+
+.footer-col h4 {
+    color: #fff;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    border-bottom: 2px solid var(--c-orange);
+    display: inline-block;
+    padding-bottom: 8px;
+}
+
+.footer-col ul li { margin-bottom: 12px; }
+
+.footer-col ul li a {
+    color: var(--c-text-muted);
+    transition: 0.2s;
+}
+
+.footer-col ul li a:hover {
+    color: var(--c-gold);
+    padding-left: 8px;
+}
+
+.footer-bottom {
+    background-color: #000;
+    text-align: center;
+    padding: 30px 20px;
+    border-top: 1px solid #111;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.admin-panel-link {
+    display: inline-block;
+    padding: 8px 16px;
+    margin-top: 20px;
+    border: 1px solid #333;
+    color: #666;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    transition: var(--transition);
+}
+
+.admin-panel-link:hover {
+    border-color: var(--c-gold);
+    color: var(--c-gold);
+    background: transparent;
+}
+
+/* --- 10. RWD (MOBILE) --- */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        padding: 15px;
+    }
+    
+    .menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 15px 0 10px;
+        gap: 15px 25px; /* Większy odstęp poziomy */
+    }
+    
+    body { padding-top: 170px; }
+    
+    .section-title { font-size: 2.2rem; }
+    .header h1 { font-size: 2.5rem !important; }
+    
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+        padding: 30px;
+    }
+
+    .modal-grid-layout {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .modal-img-box { text-align: center; }
+}
