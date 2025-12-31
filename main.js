@@ -90,3 +90,25 @@ function initNewsletter() {
         }
     }
 }
+/* --- OBSŁUGA MENU BOCZNEGO --- */
+function initSideMenu() {
+    const menuBtn = document.getElementById('menu-toggle');
+    const closeBtn = document.getElementById('menu-close');
+    const sideMenu = document.getElementById('side-menu');
+    const overlay = document.getElementById('side-menu-overlay');
+
+    function toggleMenu() {
+        sideMenu.classList.toggle('active');
+        overlay.classList.toggle('active');
+    }
+
+    if (menuBtn) menuBtn.addEventListener('click', toggleMenu);
+    if (closeBtn) closeBtn.addEventListener('click', toggleMenu);
+    if (overlay) overlay.addEventListener('click', toggleMenu);
+}
+
+// Upewnij się, że wywołujesz to przy starcie strony:
+document.addEventListener('DOMContentLoaded', () => {
+    initSideMenu();
+    // ...twoje inne funkcje (initNewsletter itp.)
+});

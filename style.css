@@ -1,5 +1,5 @@
 /* assets/css/style.css 
-   Wersja MODERN 2.0 - Szlachetne Złoto & Glassmorphism
+   Wersja COMPLETE - Modern Dark, Hybrid Menu, Icons & Neon Glow
 */
 
 /* --- 1. ZMIENNE I KONFIGURACJA --- */
@@ -13,26 +13,22 @@
     --c-text-muted: #a0a0a0;    
 
     /* Akcenty */
-    /* Zmieniony żółty: bardziej miodowy, mniej neonowy (#FFC107 -> #E1B12C) */
-    --c-gold: #E1B12C;          
-    /* Subtelniejszy border (złoty z dużą przezroczystością) */
+    --c-gold: #E1B12C;          /* Miodowe złoto */
     --c-gold-dim: rgba(225, 177, 44, 0.15); 
-
-    --c-orange: #E67E00;        /* Nieco ciemniejszy, elegancki pomarańcz */
-    --c-border: rgba(255, 255, 255, 0.08); /* Bardzo subtelne linie */
+    --c-orange: #E67E00;        /* Elegancki pomarańcz */
+    --c-border: rgba(255, 255, 255, 0.08); 
 
     /* Typografia */
     --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
     --font-head: 'Georgia', serif; 
 
-    /* Wymiary i efekty (Modern UI) */
+    /* Wymiary i efekty */
     --nav-height: 80px;
-    --radius: 12px;             /* Większe zaokrąglenia */
-    --shadow-soft: 0 8px 30px rgba(0,0,0,0.5); /* Miękki cień */
-    --shadow-glow: 0 0 15px rgba(225, 177, 44, 0.15); /* Złota poświata */
-    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Płynniejsza animacja */
+    --radius: 12px;             
+    --shadow-soft: 0 8px 30px rgba(0,0,0,0.5); 
+    --shadow-glow: 0 0 15px rgba(225, 177, 44, 0.15); 
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     
-    /* Tło gradientowe dla kart - efekt premium */
     --bg-gradient: linear-gradient(145deg, #161616 0%, #0f0f0f 100%);
 }
 
@@ -47,12 +43,11 @@ body {
     background-color: var(--c-bg-main);
     color: var(--c-text-primary);
     font-family: var(--font-main);
-    line-height: 1.7; /* Nieco więcej powietrza w tekście */
+    line-height: 1.7;
     padding-top: var(--nav-height);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    /* Subtelne tło 'szum' dla tekstury (opcjonalne, dodaje charakteru) */
     background-image: radial-gradient(circle at top center, #1a1a1a 0%, #050505 60%);
     background-attachment: fixed;
 }
@@ -66,15 +61,15 @@ a {
 ul { list-style: none; }
 img { max-width: 100%; display: block; }
 
-/* --- 3. NAWIGACJA (GLASSMORPHISM) --- */
+/* --- 3. NAWIGACJA (Menu Główne) --- */
 nav {
-    background-color: rgba(5, 5, 5, 0.85); /* Bardziej przezroczyste */
+    background-color: rgba(5, 5, 5, 0.85);
     border-bottom: 1px solid var(--c-border);
     height: var(--nav-height);
     position: fixed;
     top: 0; left: 0; width: 100%;
     z-index: 1000;
-    backdrop-filter: blur(12px); /* Rozmycie tła pod menu */
+    backdrop-filter: blur(12px);
     box-shadow: 0 4px 20px rgba(0,0,0,0.4);
 }
 
@@ -116,32 +111,13 @@ nav {
     color: var(--c-gold);
 }
 
-/* Nowoczesny efekt podkreślenia (kropka zamiast linii lub krótka linia) */
-.menu li a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    background: var(--c-gold);
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    transition: width 0.3s ease;
-    box-shadow: 0 0 8px var(--c-gold);
-}
-
-.menu li a:hover::after,
-.menu li a.active::after {
-    width: 20px; /* Krótka, stylowa kreska */
-}
-
 .nav-actions { display: none !important; }
 
 /* --- 4. GŁÓWNY UKŁAD --- */
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 80px 20px; /* Więcej oddechu */
+    padding: 80px 20px;
     width: 100%;
 }
 
@@ -157,7 +133,6 @@ nav {
     width: 100%;
 }
 
-/* Ozdobnik pod tytułem */
 .section-title::after {
     content: '';
     display: block;
@@ -169,15 +144,15 @@ nav {
     box-shadow: 0 0 10px var(--c-orange);
 }
 
-/* --- 5. ELEMENTY UI (Karty, Przyciski) --- */
+/* --- 5. ELEMENTY UI --- */
 
-/* Przycisk Główny (Modern Gradient) */
+/* Przycisk Główny */
 .btn-main {
     background: linear-gradient(135deg, var(--c-orange) 0%, #c26a00 100%);
     color: #fff;
     border: none;
     padding: 14px 30px;
-    border-radius: 50px; /* Pill shape */
+    border-radius: 50px;
     font-weight: 600;
     cursor: pointer;
     text-transform: uppercase;
@@ -197,7 +172,7 @@ nav {
     filter: brightness(1.1);
 }
 
-/* Karty (Modern Dark Cards) */
+/* Karty */
 .card, .section-feature {
     background: var(--bg-gradient);
     border: 1px solid var(--c-border);
@@ -206,15 +181,6 @@ nav {
     transition: var(--transition);
     position: relative;
     overflow: hidden;
-}
-
-/* Subtelny "shine" effect na kartach */
-.card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle at top right, rgba(255,255,255,0.03), transparent 40%);
-    pointer-events: none;
 }
 
 .card:hover {
@@ -232,11 +198,11 @@ nav {
 
 .card p { color: var(--c-text-muted); font-size: 0.95rem; }
 
-/* Sekcja Cech (Listy) */
+/* Sekcja Cech */
 .section-feature {
     margin-bottom: 25px;
     border-left: 4px solid var(--c-gold);
-    background: #0f0f0f; /* Nieco ciemniejsze od kart produktów */
+    background: #0f0f0f; 
 }
 
 .section-feature:hover {
@@ -249,7 +215,7 @@ nav {
 /* Grid Produktów */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Szersze karty */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 40px;
 }
 
@@ -261,7 +227,7 @@ nav {
     transform: scale(1.1) rotate(5deg);
 }
 
-/* --- 6. MODAL (GLASSY OVERLAY) --- */
+/* --- 6. MODAL --- */
 .modal {
     display: none;
     position: fixed;
@@ -269,18 +235,17 @@ nav {
     left: 0; top: 0;
     width: 100%; height: 100%;
     background-color: rgba(0,0,0,0.85);
-    backdrop-filter: blur(8px); /* Mocniejsze rozmycie tła strony */
+    backdrop-filter: blur(8px);
 }
 
 .modal-content {
-    background: #121212;
     background: linear-gradient(160deg, #1a1a1a, #0a0a0a);
     margin: 5% auto;
     padding: 50px;
     border: 1px solid var(--c-gold-dim);
     width: 90%;
     max-width: 800px;
-    border-radius: 20px; /* Bardziej okrągły */
+    border-radius: 20px;
     position: relative;
     color: var(--c-text-primary);
     box-shadow: 0 20px 50px rgba(0,0,0,0.7);
@@ -314,10 +279,9 @@ nav {
     text-shadow: 0 0 10px rgba(225, 177, 44, 0.2);
 }
 
-/* Ukrycie kontrolek ilości w modalu */
 .qty-control { display: none !important; }
 
-/* --- 7. LINK MENU (BUTTONY JAKO Widgety) --- */
+/* --- 7. LINK MENU & WIDGETS --- */
 .links-wrapper {
     display: flex;
     flex-direction: column;
@@ -335,7 +299,7 @@ nav {
     padding: 22px;
     background-color: #141414;
     border: 1px solid var(--c-border);
-    border-radius: 16px; /* Nowoczesne, mocne zaokrąglenie */
+    border-radius: 16px;
     color: var(--c-text-primary);
     font-size: 1.1rem;
     font-weight: 600;
@@ -366,7 +330,7 @@ nav {
     text-shadow: 0 0 10px var(--c-gold);
 }
 
-/* --- 8. NEWSLETTER (FLOATING WIDGET) --- */
+/* Newsletter */
 .newsletter-box {
     position: fixed;
     bottom: 30px; right: 30px;
@@ -379,13 +343,9 @@ nav {
     border-radius: 16px;
     z-index: 999;
     box-shadow: var(--shadow-soft);
-    transition: opacity 0.4s, transform 0.4s;
-    transform-origin: bottom right;
+    transition: opacity 0.4s;
 }
-
-.newsletter-box.hidden {
-    display: none;
-}
+.newsletter-box.hidden { display: none; }
 
 .newsletter-close {
     position: absolute;
@@ -396,9 +356,9 @@ nav {
 }
 .newsletter-close:hover { color: var(--c-orange); }
 
-/* --- 9. STOPKA (CLEAN & MINIMAL) --- */
+/* --- 8. STOPKA --- */
 footer {
-    background-color: #020202; /* Prawie czarny */
+    background-color: #020202;
     border-top: 1px solid var(--c-border);
     padding-top: 80px;
     margin-top: auto;
@@ -464,35 +424,174 @@ footer {
     background: transparent;
 }
 
-/* --- 10. RWD (MOBILE) --- */
-@media (max-width: 768px) {
-    .nav-container {
-        flex-direction: column;
-        padding: 15px;
-    }
-    
-    .menu {
-        flex-wrap: wrap;
-        justify-content: center;
-        margin: 15px 0 10px;
-        gap: 15px 25px; /* Większy odstęp poziomy */
-    }
-    
-    body { padding-top: 170px; }
+/* --- 9. MENU HYBRYDOWE I SIDEBAR --- */
+.hamburger-btn {
+    background: transparent;
+    border: 1px solid var(--c-border);
+    color: var(--c-gold);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 15px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: var(--transition);
+    z-index: 1001;
+}
+
+.hamburger-btn:hover {
+    border-color: var(--c-gold);
+    background: rgba(225, 177, 44, 0.1);
+}
+
+.hamburger-btn .btn-text {
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.side-menu-panel {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 300px;
+    height: 100vh;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(15px);
+    z-index: 2000;
+    transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    border-left: 1px solid var(--c-gold-dim);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.side-menu-panel.active { right: 0; }
+
+.menu-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(3px);
+    z-index: 1999;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+}
+
+.menu-overlay.active { opacity: 1; visibility: visible; }
+
+.side-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--c-border);
+    padding-bottom: 15px;
+}
+
+.side-logo {
+    font-family: var(--font-head);
+    color: var(--c-gold);
+    font-size: 1.4rem;
+}
+
+.side-menu-list li { margin-bottom: 20px; }
+
+.side-menu-list li a {
+    font-size: 1.1rem;
+    color: var(--c-text-primary);
+    font-weight: 500;
+    display: block;
+    transition: 0.3s;
+}
+
+.side-menu-list li a:hover {
+    color: var(--c-gold);
+    transform: translateX(10px);
+}
+
+/* --- 10. WYRÓWNANIE IKON (FIX) --- */
+.side-menu-list a i {
+    width: 45px;
+    text-align: center;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.menu a i {
+    width: 30px;
+    text-align: center;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.footer-col p i, .footer-col li i {
+    width: 25px;
+    text-align: center;
+    display: inline-block;
+}
+
+.hamburger-btn i {
+    width: auto;
+    margin-right: 8px;
+}
+
+/* Duże ikony (Dlaczego My) */
+.icon-feature-box {
+    font-size: 3rem;
+    color: var(--c-gold);
+    margin-bottom: 20px;
+    display: inline-block;
+    padding: 15px;
+    background: rgba(225, 177, 44, 0.1);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    line-height: 50px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(225, 177, 44, 0.2);
+    transition: var(--transition);
+}
+
+.section-feature:hover .icon-feature-box {
+    transform: scale(1.1) rotate(5deg);
+    background: rgba(225, 177, 44, 0.2);
+    color: #fff;
+}
+
+/* --- 11. ANIMACJA PODPISU DEVELOPERA (Glow Boost) --- */
+.developer-signature {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    display: inline-block;
+}
+
+.developer-signature:hover {
+    color: var(--c-gold);
+    /* Mocniejsza, bardziej widoczna poświata */
+    text-shadow: 
+        0 0 5px rgba(225, 177, 44, 0.9),   /* Blisko liter - bardzo jasne */
+        0 0 15px rgba(225, 177, 44, 0.6),  /* Średni zasięg */
+        0 0 30px rgba(225, 177, 44, 0.4);  /* Daleka łuna */
+
+    transform: scale(1.05);
+}
+
+/* --- 12. RWD (Mobile) --- */
+@media (max-width: 900px) {
+    .desktop-links { display: none; }
+    .btn-text { display: none; }
+    .nav-container { padding: 15px; }
     
     .section-title { font-size: 2.2rem; }
-    .header h1 { font-size: 2.5rem !important; }
     
     .modal-content {
-        width: 95%;
-        margin: 10% auto;
-        padding: 30px;
+        width: 95%; margin: 10% auto; padding: 30px;
     }
-
-    .modal-grid-layout {
-        grid-template-columns: 1fr;
-        gap: 25px;
-    }
-    
+    .modal-grid-layout { grid-template-columns: 1fr; gap: 25px; }
     .modal-img-box { text-align: center; }
 }

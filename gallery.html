@@ -9,34 +9,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pasieka Pod Gruszką</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" href="assets/logo/favicon.ico">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <nav>
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <img src="assets/logo/logo.png" alt="Logo"> Pod Gruszką
-            </a>
-            <ul class="menu">
-                <li><a href="index.html">Start</a></li>
-                <li><a href="products.html">Sklep</a></li>
-                <li><a href="rescue.html" style="color:var(--c-accent);">Pogotowie</a></li>
-                <li><a href="gallery.html" class="active">Galeria</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="przepisy.html">Przepisy</a></li>
-                <li><a href="contact.html">Kontakt</a></li>
-                <li><a href="linkmenu.html">Linki</a></li>
-            </ul>
-            <div class="nav-actions">
-                <button id="theme-switch"><i class="fas fa-moon"></i> Ciemny</button>
-                <a href="cart.html" class="cart-wrapper">
-                    <i class="fas fa-shopping-basket" style="font-size:1.3rem;"></i>
-                    <span id="cart-badge" class="cart-count">0</span>
-                </a>
-            </div>
-        </div>
-    </nav>
+    <div class="nav-container">
+        <a href="index.html" class="logo">
+            <img src="assets/logo/logo.png" alt="Logo"> Pod Gruszką
+        </a>
+
+        <ul class="menu desktop-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> Start</a></li>
+            <li><a href="products.html"><i class="fa-solid fa-store"></i> Sklep</a></li>
+            <li><a href="rescue.html" style="color:var(--c-orange);"><i class="fa-solid fa-truck-medical"></i> Pogotowie</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> Kontakt</a></li>
+        </ul>
+
+        <button id="menu-toggle" class="hamburger-btn">
+            <i class="fa-solid fa-bars"></i> <span class="btn-text">MENU</span>
+        </button>
+    </div>
+</nav>
+
+<div id="side-menu-overlay" class="menu-overlay"></div>
+<div id="side-menu" class="side-menu-panel">
+    <div class="side-menu-header">
+        <span class="side-logo"><i class="fa-solid fa-bars"></i> Nawigacja</span>
+        <span id="menu-close" class="close-btn">&times;</span>
+    </div>
+    
+    <ul class="side-menu-list">
+        <li><a href="index.html"><i class="fa-solid fa-house"></i> Start</a></li>
+        <li><a href="products.html"><i class="fa-solid fa-jar"></i> Sklep z miodami</a></li>
+        <li><a href="rescue.html"><i class="fa-solid fa-truck-medical"></i> Pogotowie Rójkowe</a></li>
+        <li><a href="gallery.html"><i class="fa-solid fa-images"></i> Galeria Zdjęć</a></li>
+        <li><a href="blog.html"><i class="fa-solid fa-newspaper"></i> Blog Pszczelarski</a></li>
+        <li><a href="przepisy.html"><i class="fa-solid fa-utensils"></i> Przepisy Cioci Agnieszki</a></li>
+        <li><a href="contact.html"><i class="fa-solid fa-address-book"></i> Kontakt</a></li>
+        <li><a href="linkmenu.html"><i class="fa-solid fa-link"></i> Wszystkie Linki</a></li>
+    </ul>
+</div>
 
     <main class="container">
         <h1 class="section-title">Migawki z Pasieki</h1>
@@ -46,37 +60,56 @@
     </main>
 
     <footer>
-        <div class="footer-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; padding: 0 20px 40px;">
-            <div class="footer-col">
-                <div class="logo" style="margin-bottom:15px; font-family:var(--font-head); color:var(--c-gold); font-size:1.2rem; font-weight:bold;">
-                    <img src="assets/logo/logo.png" style="height:30px; margin-right:10px;"> Pod Gruszką
-                </div>
-                <p style="color:#888; font-size:0.9rem;"></p>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <div class="logo">
+                <img src="assets/logo/logo.png" style="height:30px; margin-right:10px;"> Pod Gruszką
             </div>
-            
-            <div class="footer-col">
-                <h4 style="color:#fff; margin-bottom:15px;">Odbiory Osobiste</h4>
-                <p style="color:#888; font-size:0.9rem;">Rybie, ul. Mała 10, 05-090</p>
-                <p style="color:var(--c-gold); font-weight:bold;">Tel: +48 506 224 982</p>
-                <small style="color:#666;">Prosimy dzwonić przed przyjazdem.</small>
-            </div>
-            
-            <div class="footer-col">
-                <h4 style="color:#fff; margin-bottom:15px;">Linki</h4>
-                <ul style="list-style:none;">
-                    <li style="margin-bottom:5px;"><a href="products.html" style="color:#888; text-decoration:none;">Sklep</a></li>
-                    <li style="margin-bottom:5px;"><a href="rescue.html" style="color:#888; text-decoration:none;">Pogotowie Rójkowe</a></li>
-                    <li style="margin-bottom:5px;"><a href="przepisy.html" style="color:#888; text-decoration:none;">Przepisy Cioci Agnieszki</a></li>
-                </ul>
-            </div>
+            <p style="color:#888; font-size:0.9rem; margin-top: 15px;">
+                Naturalne miody z pasją.
+            </p>
         </div>
+        
+        <div class="footer-col">
+            <h4 style="color:#fff; margin-bottom:15px;">Odbiory Osobiste</h4>
+            <p style="color:#888; font-size:0.9rem;">
+                <i class="fas fa-map-marker-alt" style="color:var(--c-gold); margin-right:5px;"></i> Rybie, ul. Mała 10, 05-090
+            </p>
+            <p style="color:var(--c-gold); font-weight:bold; margin: 10px 0;">
+                <i class="fas fa-phone" style="margin-right:5px;"></i> Tel: +48 506 224 982
+            </p>
+            <small style="color:#666;">Prosimy dzwonić przed przyjazdem.</small>
+        </div>
+        
+        <div class="footer-col">
+            <h4 style="color:#fff; margin-bottom:15px;">Linki</h4>
+            <ul style="list-style:none;">
+                <li style="margin-bottom:5px;">
+                    <a href="products.html" style="color:#888;"><i class="fas fa-chevron-right" style="font-size:0.8rem; margin-right:5px;"></i> Sklep</a>
+                </li>
+                <li style="margin-bottom:5px;">
+                    <a href="rescue.html" style="color:#888;"><i class="fas fa-chevron-right" style="font-size:0.8rem; margin-right:5px;"></i> Pogotowie Rójkowe</a>
+                </li>
+                <li style="margin-bottom:5px;">
+                    <a href="przepisy.html" style="color:#888;"><i class="fas fa-chevron-right" style="font-size:0.8rem; margin-right:5px;"></i> Przepisy</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
         <div class="footer-bottom" style="text-align:center; padding:20px; border-top:1px solid #222; font-size:0.85rem; color:#666;">
             © 2025 Pasieka Pod Gruszką. Website designer & developer: 
             <a href="https://github.com/WikZal" target="_blank" class="developer-signature" style="color:#fff; text-decoration:none; font-weight:bold; margin-left:5px;">Wiktor Zalewski</a>
             <p> Błędy strony należy zgłaszać za pomocą wiadomości email na wiktorzalewski50@gmail.com </p>
+        
+        <div style="margin-top: 20px;">
+            <a href="login.php" class="admin-panel-link">
+                <i class="fas fa-tools"></i> Panel Admina
+            </a>
         </div>
-    </footer>
-    <script src="assets/js/main.js"></script> 
+    </div>
+</footer>
+
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
