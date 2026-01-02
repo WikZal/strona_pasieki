@@ -1,5 +1,4 @@
-Project structure (EN)
-Struktura projektu (PL)
+## Project structure (EN) / Struktura projektu (PL)
 
 public_html/
 ├── 404.html
