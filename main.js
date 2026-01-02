@@ -1,13 +1,7 @@
-/* assets/js/main.js
-   Wersja uproszczona: Tylko Modal (Informacje) i Newsletter
-   Brak koszyka, brak zmiany motywu.
-*/
-
 document.addEventListener('DOMContentLoaded', () => {
     initNewsletter();
 });
 
-/* --- 1. BAZA DANYCH PRODUKTÓW (Do wyświetlania w modalu) --- */
 const productsData = {
     'spadziowy': { 
         title: 'Miód Spadziowy', 
@@ -26,7 +20,6 @@ const productsData = {
     }
 };
 
-/* --- 2. MODAL PRODUKTOWY (Tylko podgląd) --- */
 window.openProduct = function(id) {
     const modal = document.getElementById('product-modal');
     const data = productsData[id];
@@ -40,18 +33,15 @@ window.openProduct = function(id) {
         if(titleEl) titleEl.innerText = data.title;
         if(priceEl) priceEl.innerText = data.price.toFixed(2) + ' PLN';
         if(descEl) descEl.innerText = data.desc;
-        
-        // Ukrywamy ewentualne elementy ilości i przycisk dodawania, 
-        // jeśli HTML nie został jeszcze wyczyszczony.
-        // Jeśli HTML zostanie zaktualizowany, te linie nie zaszkodzą.
+
         const qtyControl = document.querySelector('.qty-control');
         const addBtn = document.getElementById('m-add-btn');
         
-        if(qtyControl) qtyControl.style.display = 'none'; // Ukryj plus/minus
+        if(qtyControl) qtyControl.style.display = 'none';
         
         if(addBtn) {
-            addBtn.innerText = "ZAMKNIJ"; // Zmień tekst przycisku
-            addBtn.onclick = closeModal;  // Przycisk teraz zamyka okno zamiast dodawać do koszyka
+            addBtn.innerText = "ZAMKNIJ";
+            addBtn.onclick = closeModal;
         }
 
         modal.style.display = 'block';
@@ -63,7 +53,6 @@ window.closeModal = function() {
     if (modal) modal.style.display = 'none';
 };
 
-// Zamknij modal klikając w tło (poza oknem)
 window.onclick = function(event) {
     const modal = document.getElementById('product-modal');
     if (event.target == modal) {
@@ -71,12 +60,10 @@ window.onclick = function(event) {
     }
 };
 
-/* --- 3. NEWSLETTER (Pop-up) --- */
 function initNewsletter() {
     const box = document.getElementById('newsletter-box');
     const closeBtn = document.getElementById('newsletter-close');
     
-    // Pokaż po 3 sekundach, jeśli user go nie zamknął w tej sesji
     if (box && !sessionStorage.getItem('newsletter_closed')) {
         setTimeout(() => {
             box.classList.remove('hidden');
@@ -90,7 +77,6 @@ function initNewsletter() {
         }
     }
 }
-/* --- OBSŁUGA MENU BOCZNEGO --- */
 function initSideMenu() {
     const menuBtn = document.getElementById('menu-toggle');
     const closeBtn = document.getElementById('menu-close');
@@ -107,8 +93,6 @@ function initSideMenu() {
     if (overlay) overlay.addEventListener('click', toggleMenu);
 }
 
-// Upewnij się, że wywołujesz to przy starcie strony:
 document.addEventListener('DOMContentLoaded', () => {
     initSideMenu();
-    // ...twoje inne funkcje (initNewsletter itp.)
 });

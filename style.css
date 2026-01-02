@@ -1,28 +1,19 @@
-/* assets/css/style.css 
-   Wersja COMPLETE - Modern Dark, Hybrid Menu, Icons & Neon Glow
-*/
-
-/* --- 1. ZMIENNE I KONFIGURACJA --- */
 :root {
     /* Paleta Kolorów */
-    --c-bg-main: #050505;       /* Głęboka czerń */
-    --c-bg-card: #141414;       /* Tło kart (baza) */
+    --c-bg-main: #050505;
+    --c-bg-card: #141414;
     
-    /* Kolory Tekstu */
     --c-text-primary: #f2f2f2;  
     --c-text-muted: #a0a0a0;    
 
-    /* Akcenty */
-    --c-gold: #E1B12C;          /* Miodowe złoto */
+    --c-gold: #E1B12C;
     --c-gold-dim: rgba(225, 177, 44, 0.15); 
-    --c-orange: #E67E00;        /* Elegancki pomarańcz */
+    --c-orange: #E67E00;
     --c-border: rgba(255, 255, 255, 0.08); 
 
-    /* Typografia */
     --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
     --font-head: 'Georgia', serif; 
 
-    /* Wymiary i efekty */
     --nav-height: 80px;
     --radius: 12px;             
     --shadow-soft: 0 8px 30px rgba(0,0,0,0.5); 
@@ -32,7 +23,6 @@
     --bg-gradient: linear-gradient(145deg, #161616 0%, #0f0f0f 100%);
 }
 
-/* --- 2. RESET I FUNDAMENTY --- */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -61,7 +51,6 @@ a {
 ul { list-style: none; }
 img { max-width: 100%; display: block; }
 
-/* --- 3. NAWIGACJA (Menu Główne) --- */
 nav {
     background-color: rgba(5, 5, 5, 0.85);
     border-bottom: 1px solid var(--c-border);
@@ -113,7 +102,6 @@ nav {
 
 .nav-actions { display: none !important; }
 
-/* --- 4. GŁÓWNY UKŁAD --- */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -144,9 +132,6 @@ nav {
     box-shadow: 0 0 10px var(--c-orange);
 }
 
-/* --- 5. ELEMENTY UI --- */
-
-/* Przycisk Główny */
 .btn-main {
     background: linear-gradient(135deg, var(--c-orange) 0%, #c26a00 100%);
     color: #fff;
@@ -172,7 +157,6 @@ nav {
     filter: brightness(1.1);
 }
 
-/* Karty */
 .card, .section-feature {
     background: var(--bg-gradient);
     border: 1px solid var(--c-border);
@@ -198,7 +182,6 @@ nav {
 
 .card p { color: var(--c-text-muted); font-size: 0.95rem; }
 
-/* Sekcja Cech */
 .section-feature {
     margin-bottom: 25px;
     border-left: 4px solid var(--c-gold);
@@ -212,7 +195,6 @@ nav {
 
 .section-feature h3 { color: var(--c-gold); margin-bottom: 8px; }
 
-/* Grid Produktów */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -227,7 +209,6 @@ nav {
     transform: scale(1.1) rotate(5deg);
 }
 
-/* --- 6. MODAL --- */
 .modal {
     display: none;
     position: fixed;
@@ -281,7 +262,6 @@ nav {
 
 .qty-control { display: none !important; }
 
-/* --- 7. LINK MENU & WIDGETS --- */
 .links-wrapper {
     display: flex;
     flex-direction: column;
@@ -330,7 +310,6 @@ nav {
     text-shadow: 0 0 10px var(--c-gold);
 }
 
-/* Newsletter */
 .newsletter-box {
     position: fixed;
     bottom: 30px; right: 30px;
@@ -424,7 +403,6 @@ footer {
     background: transparent;
 }
 
-/* --- 9. MENU HYBRYDOWE I SIDEBAR --- */
 .hamburger-btn {
     background: transparent;
     border: 1px solid var(--c-border);
@@ -512,7 +490,6 @@ footer {
     transform: translateX(10px);
 }
 
-/* --- 10. WYRÓWNANIE IKON (FIX) --- */
 .side-menu-list a i {
     width: 45px;
     text-align: center;
@@ -538,7 +515,6 @@ footer {
     margin-right: 8px;
 }
 
-/* Duże ikony (Dlaczego My) */
 .icon-feature-box {
     font-size: 3rem;
     color: var(--c-gold);
@@ -561,7 +537,6 @@ footer {
     color: #fff;
 }
 
-/* --- 11. ANIMACJA PODPISU DEVELOPERA (Glow Boost) --- */
 .developer-signature {
     color: #fff;
     text-decoration: none;
@@ -572,16 +547,14 @@ footer {
 
 .developer-signature:hover {
     color: var(--c-gold);
-    /* Mocniejsza, bardziej widoczna poświata */
     text-shadow: 
-        0 0 5px rgba(225, 177, 44, 0.9),   /* Blisko liter - bardzo jasne */
-        0 0 15px rgba(225, 177, 44, 0.6),  /* Średni zasięg */
-        0 0 30px rgba(225, 177, 44, 0.4);  /* Daleka łuna */
+        0 0 5px rgba(225, 177, 44, 0.9),
+        0 0 15px rgba(225, 177, 44, 0.6),
+        0 0 30px rgba(225, 177, 44, 0.4);
 
     transform: scale(1.05);
 }
 
-/* --- 12. RWD (Mobile) --- */
 @media (max-width: 900px) {
     .desktop-links { display: none; }
     .btn-text { display: none; }
