@@ -2,133 +2,216 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="keywords" content="miód, pasieka, pszczoły, miód naturalny, miód lipowy, miód rzepakowy, rybie, raszyn ,warszawa, pasieka pod gruszką, pasja">
-    <meta name="description" content="Odkryj prawdziwy smak natury! Najlepsze miody z naszej rodzinnej pasieki Pod Gruszką. Naturalny miód!">
+    <meta name="keywords" content="miód, pasieka, pszczoły, miód naturalny, miód lipowy, miód rzepakowy, rybie, raszyn, warszawa, pasieka pod gruszką, kontakt">
+    <meta name="description" content="Skontaktuj się z Pasieką Pod Gruszką. Zamów miód, zapytaj o pogotowie rójkowe lub odwiedź nas w Rybiu.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Wiktor Zalewski">
-    <title>Pasieka Pod Gruszką</title>
+    <title>Kontakt - Pasieka Pod Gruszką</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" href="assets/logo/favicon.ico">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <style>
+        /* Kontener układu - Domyślnie dla PC (Grid) */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr; /* Lewa kolumna węższa, mapa szersza */
+            gap: 40px;
+            align-items: stretch; /* Równe wysokości */
+        }
+
+        /* Karta z danymi */
+        .contact-card {
+            padding: 40px;
+            background: #1a1a1a; /* Tło karty (jeśli nie jest zdefiniowane w .card) */
+            border: 1px solid #333;
+            border-radius: 12px;
+        }
+
+        /* Kontener mapy */
+        .map-responsive {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--c-gold, #ffc107);
+            height: 100%;
+            min-height: 500px; /* Minimalna wysokość na PC */
+            position: relative;
+        }
+
+        .map-responsive iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block; /* Usuwa puste miejsce pod mapą */
+        }
+
+        /* --- WERSJA MOBILNA (Telefony i tablety) --- */
+        @media (max-width: 900px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr; /* Jeden pod drugim */
+                gap: 30px;
+            }
+
+            .contact-card {
+                padding: 25px; /* Mniejsze marginesy wewnątrz */
+                order: 1; /* Dane kontaktowe pierwsze */
+            }
+
+            .map-responsive {
+                order: 2; /* Mapa druga */
+                height: 400px; /* Mniejsza wysokość na telefonie */
+                min-height: auto;
+            }
+            
+            /* Powiększenie czcionek linków dla łatwiejszego klikania palcem */
+            .contact-link {
+                display: inline-block;
+                padding: 5px 0;
+            }
+        }
+    </style>
 </head>
 <body>
 
     <nav>
         <div class="nav-container">
             <a href="index.html" class="logo">
-                <img src="assets/logo/logo.png" alt="Logo"> Pod Gruszką
+                <img src="assets/logo/logo.png" alt="Logo">Pasieka Pod Gruszką
             </a>
-            <ul class="menu">
-                <li><a href="index.html">Start</a></li>
-                <li><a href="products.html">Sklep</a></li>
-                <li><a href="rescue.html" style="color:var(--c-accent);">Pogotowie</a></li>
-                <li><a href="gallery.html">Galeria</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="przepisy.html">Przepisy</a></li>
-                <li><a href="contact.html" class="active">Kontakt</a></li>
-                <li><a href="linkmenu.html">Linki</a></li>
+
+            <ul class="menu desktop-links">
+                <li><a href="index.html"><i class="fa-solid fa-house"></i> Start</a></li>
+                <li><a href="products.html"><i class="fa-solid fa-store"></i> Sklep</a></li>
+                <li><a href="rescue.html" style="color:var(--c-orange, #e67e22);"><i class="fa-solid fa-truck-medical"></i> Pogotowie</a></li>
+                <li><a href="contact.html"class="active"><i class="fa-solid fa-envelope"></i> Kontakt</a></li>
             </ul>
-            <div class="nav-actions">
-                <button id="theme-switch"><i class="fas fa-moon"></i> Ciemny</button>
-                <a href="cart.html" class="cart-wrapper">
-                    <i class="fas fa-shopping-basket" style="font-size:1.3rem;"></i>
-                    <span id="cart-badge" class="cart-count">0</span>
-                </a>
-            </div>
+
+            <button id="menu-toggle" class="hamburger-btn">
+                <i class="fa-solid fa-bars"></i> <span class="btn-text">MENU</span>
+            </button>
         </div>
     </nav>
+
+    <div id="side-menu-overlay" class="menu-overlay"></div>
+    <div id="side-menu" class="side-menu-panel">
+        <div class="side-menu-header">
+            <span class="side-logo"><i class="fa-solid fa-bars"></i> Nawigacja</span>
+            <span id="menu-close" class="close-btn">&times;</span>
+        </div>
+        
+        <ul class="side-menu-list">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> Start</a></li>
+            <li><a href="products.html"><i class="fa-solid fa-jar"></i> Sklep z miodami</a></li>
+            
+            <li><a href="kits.html"><i class="fa-solid fa-gift"></i> Zestawy Prezentowe</a></li>
+            
+            <li><a href="rescue.html"><i class="fa-solid fa-truck-medical"></i> Pogotowie Rójkowe</a></li>
+            <li><a href="gallery.html"><i class="fa-solid fa-images"></i> Galeria Zdjęć</a></li>
+            <li><a href="blog.html"><i class="fa-solid fa-newspaper"></i> Blog Pszczelarski</a></li>
+            <li><a href="przepisy.html"><i class="fa-solid fa-utensils"></i> Przepisy Cioci Agnieszki</a></li>
+            
+            <li><a href="my.html"><i class="fa-solid fa-user-group"></i> O nas</a></li>
+            
+            <li><a href="contact.html"><i class="fa-solid fa-address-book"></i> Kontakt</a></li>
+            <li><a href="linkmenu.html"><i class="fa-solid fa-link"></i> Wszystkie Linki</a></li>
+        </ul>
+    </div>
 
     <main class="container">
         <h1 class="section-title">Znajdź nas</h1>
         
-        <div class="contact-layout" style="display: grid; grid-template-columns: 1fr 2fr; gap: 40px;">
+        <div class="contact-wrapper">
             
-            <div class="card contact-info" style="padding: 40px;">
-                <h3 style="color: var(--c-gold); font-family: var(--font-head); font-size: 1.8rem; margin-bottom: 30px;">
+            <div class="card contact-card">
+                <h3 style="color: var(--c-gold, #ffc107); font-family: var(--font-head); font-size: 1.8rem; margin-bottom: 30px;">
                     Skontaktuj się z nami
                 </h3>
                 
                 <div style="margin-bottom: 25px;">
-                    <p style="color: var(--c-text-muted); font-size: 0.9rem;">Telefon:</p>
+                    <p style="color: var(--c-text-muted, #888); font-size: 0.9rem;">Telefon:</p>
                     <p style="font-size: 1.4rem; font-weight: bold;">
-                        <i class="fas fa-phone" style="color: var(--c-accent); margin-right: 10px;"></i>
-                        <a href="tel:+48506224982" style="color: var(--c-text); text-decoration: none;">+48 506 224 982</a>
+                        <i class="fas fa-phone" style="color: var(--c-orange, #e67e22); margin-right: 10px;"></i>
+                        <a href="tel:+48506224982" class="contact-link" style="color: #fff; text-decoration: none;">+48 506 224 982</a>
                     </p>
                 </div>
 
                 <div style="margin-bottom: 25px;">
-                    <p style="color: var(--c-text-muted); font-size: 0.9rem;">E-mail:</p>
+                    <p style="color: var(--c-text-muted, #888); font-size: 0.9rem;">E-mail:</p>
                     <p style="font-size: 1.1rem; font-weight: bold;">
-                        <i class="fas fa-envelope" style="color: var(--c-accent); margin-right: 10px;"></i>
-                        <a href="mailto:kontakt@wikzal.pl" style="color: var(--c-text); text-decoration: none;">kontakt@wikzal.pl</a>
+                        <i class="fas fa-envelope" style="color: var(--c-orange, #e67e22); margin-right: 10px;"></i>
+                        <a href="mailto:kontakt@wikzal.pl" class="contact-link" style="color: #fff; text-decoration: none;">kontakt@wikzal.pl</a>
                     </p>
                 </div>
 
                 <div style="margin-bottom: 25px;">
-                    <p style="color: var(--c-text-muted); font-size: 0.9rem;">Adres:</p>
+                    <p style="color: var(--c-text-muted, #888); font-size: 0.9rem;">Adres:</p>
                     <p style="font-size: 1.1rem; font-weight: bold;">
-                        <i class="fas fa-map-marker-alt" style="color: var(--c-accent); margin-right: 10px;"></i>
+                        <i class="fas fa-map-marker-alt" style="color: var(--c-orange, #e67e22); margin-right: 10px;"></i>
                         Rybie, ul. Mała 10, 05-090
                     </p>
                 </div>
                 
-                <hr style="border:0; border-top:1px solid rgba(212, 175, 55, 0.15); margin: 30px 0;">
+                <hr style="border:0; border-top:1px solid rgba(255, 193, 7, 0.2); margin: 30px 0;">
                 
-                <small class="text-muted" style="color: #666; display: block; text-align: center;">
-                    Najlepiej dzwonić w godzinach 8:00 - 18:00. Jeśli nie odbieramy, pewnie jesteśmy przy ulach!
+                <small class="text-muted" style="color: #666; display: block; text-align: center; line-height: 1.5;">
+                    <i class="fas fa-clock"></i> Najlepiej dzwonić w godzinach 8:00 - 18:00.<br>
+                    Jeśli nie odbieramy, pewnie jesteśmy przy ulach! 🐝
                 </small>
             </div>
 
-            <div class="map-container" style="border-radius: 12px; overflow: hidden; height: 500px; border: 1px solid var(--c-gold);">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d611.94954117228!2d20.93908273247148!3d52.15618019780299!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471933048ecbdd71%3A0xe9b7f7180e1220ab!2sMiody%20z%20Pasieki%20Pod%20Gruszk%C4%85!5e0!3m2!1spl!2spl!4v1764164847186!5m2!1spl!2spl" width="750" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="map-responsive">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2448.169123456789!2d20.930000!3d52.150000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4719331899999999%3A0x0!2sul.+Ma%C5%82a+10%2C+05-090+Rybie!5e0!3m2!1spl!2spl!4v1700000000000!5m2!1spl!2spl" 
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </main>
 
     <footer>
-    <div class="footer-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; padding: 0 20px 40px;">
-        <div class="footer-col">
-            <div class="logo" style="margin-bottom:15px; font-family:var(--font-head); color:var(--c-gold); font-size:1.2rem; font-weight:bold;">
-                <img src="assets/logo/logo.png" style="height:30px; margin-right:10px;"> Pod Gruszką
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo">
+                    <img src="assets/logo/logo.png" style="height:30px; margin-right:10px;">Pasieka Pod Gruszką
+                </div>
+                <p style="color:#888; font-size:0.9rem; margin-top: 15px;">
+                    Naturalne miody z pasją.
+                </p>
             </div>
-            <p style="color:#888; font-size:0.9rem;"></p>
+            
+            <div class="footer-col">
+                <h4 style="color:#fff; margin-bottom:15px;">Odbiory Osobiste</h4>
+                <p style="color:#888; font-size:0.9rem;">
+                    <i class="fas fa-map-marker-alt" style="color:var(--c-gold); margin-right:5px;"></i> Rybie, ul. Mała 10, 05-090
+                </p>
+                <p style="color:var(--c-gold); font-weight:bold; margin: 10px 0;">
+                    <i class="fas fa-phone" style="margin-right:5px;"></i> Tel: +48 506 224 982
+                </p>
+                <small style="color:#666;">Prosimy dzwonić przed przyjazdem.</small>
+            </div>
+            
+            <div class="footer-col">
+                <h4 style="color:#fff; margin-bottom:15px;">Linki</h4>
+                <ul style="list-style:none;">
+                    <li><a href="products.html" style="color:#888;">Sklep</a></li>
+                    <li><a href="rescue.html" style="color:#888;">Pogotowie Rójkowe</a></li>
+                    <li><a href="przepisy.html" style="color:#888;">Przepisy</a></li>
+                </ul>
+            </div>
         </div>
-        
-        <div class="footer-col">
-            <h4 style="color:#fff; margin-bottom:15px;">Odbiory Osobiste</h4>
-            <p style="color:#888; font-size:0.9rem;">Rybie, ul. Mała 10, 05-090</p>
-            <p style="color:var(--c-gold); font-weight:bold;">Tel: +48 506 224 982</p>
-            <small style="color:#666;">Prosimy dzwonić przed przyjazdem.</small>
-        </div>
-        
-        <div class="footer-col">
-            <h4 style="color:#fff; margin-bottom:15px;">Linki</h4>
-            <ul style="list-style:none;">
-                <li style="margin-bottom:5px;"><a href="products.html" style="color:#888; text-decoration:none;">Sklep</a></li>
-                <li style="margin-bottom:5px;"><a href="rescue.html" style="color:#888; text-decoration:none;">Pogotowie Rójkowe</a></li>
-                <li style="margin-bottom:5px;"><a href="przepisy.html" style="color:#888; text-decoration:none;">Przepisy Cioci Agnieszki</a></li>
-            </ul>
-        </div>
-    </div>
 
-    <div class="footer-bottom" style="text-align:center; padding:20px; border-top:1px solid #222; font-size:0.85rem; color:#666;">
-        © 2025 Pasieka Pod Gruszką. Website designer & developer: 
-        <a href="https://github.com/WikZal" target="_blank" class="developer-signature" style="color:#fff; text-decoration:none; font-weight:bold; margin-left:5px;">Wiktor Zalewski</a>
-        <p> Błędy strony należy zgłaszać za pomocą wiadomości email na wiktorzalewski50@gmail.com </p>
-    </div>
+        <div class="footer-bottom" style="text-align:center; padding:20px; border-top:1px solid #222; font-size:0.85rem; color:#666;">
+            © 2025 Pasieka Pod Gruszką. Website designer & developer: 
+            <a href="https://github.com/wiktorzalewski" target="_blank" class="developer-signature" style="color:#fff; text-decoration:none; font-weight:bold; margin-left:5px;">Wiktor Zalewski</a>
+            <p> Błędy strony należy zgłaszać za pomocą wiadomości email na wiktorzalewski50@gmail.com </p>
+        
+            <div style="margin-top: 20px;">
+                <a href="login.php" class="admin-panel-link">
+                    <i class="fas fa-tools"></i> Panel Admina
+                </a>
+            </div>
+        </div>
     </footer>
-    
+
     <script src="assets/js/main.js"></script>
-    
-    <style>
-        @media (max-width: 900px) {
-            .contact-layout {
-                grid-template-columns: 1fr !important;
-            }
-            .map-container {
-                height: 350px !important;
-            }
-        }
-    </style>
 </body>
 </html>

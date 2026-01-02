@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="zestawy prezentowe, miód na prezent, kosz prezentowy, dzień nauczyciela, święta">
+    <meta name="description" content="Eleganckie zestawy miodów idealne na prezent. Spraw słodką niespodziankę bliskim lub pracownikom.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zestawy Prezentowe - Pasieka Pod Gruszką</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" href="assets/logo/favicon.ico">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+    <style>
+        .card .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 15px;
+        }
+        /* Style modala */
+        .custom-modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); z-index: 99999; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; backdrop-filter: blur(5px); }
+        .custom-modal-overlay.active { opacity: 1; }
+        .custom-modal-box { background: #1a1a1a; color: #fff; width: 90%; max-width: 950px; border-radius: 20px; padding: 30px; border: 1px solid #333; position: relative; max-height: 90vh; overflow-y: auto; transform: scale(0.7) translateY(30px); transition: all 0.4s; }
+        .custom-modal-overlay.active .custom-modal-box { transform: scale(1) translateY(0); }
+        .modal-split { display: flex; flex-direction: column; gap: 30px; }
+        @media (min-width: 768px) { .modal-split { flex-direction: row; align-items: start; } }
+        .modal-product-image { width: 100%; border-radius: 15px; }
+        .modal-title { color: var(--c-gold, #ffc107); margin-top: 0; font-size: 2rem; }
+        .close-custom-modal { position: absolute; top: 20px; right: 25px; background: none; border: none; color: #666; font-size: 30px; cursor: pointer; }
+        .close-custom-modal:hover { color: #fff; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/logo/logo.png" alt="Logo">Pasieka Pod Gruszką
+            </a>
+
+            <ul class="menu desktop-links">
+                <li><a href="index.html"><i class="fa-solid fa-house"></i> Start</a></li>
+                <li><a href="products.html"><i class="fa-solid fa-store"></i> Sklep</a></li>
+                <li><a href="rescue.html" style="color:var(--c-orange, #e67e22);"><i class="fa-solid fa-truck-medical"></i> Pogotowie</a></li>
+                <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> Kontakt</a></li>
+            </ul>
+
+            <button id="menu-toggle" class="hamburger-btn">
+                <i class="fa-solid fa-bars"></i> <span class="btn-text">MENU</span>
+            </button>
+        </div>
+    </nav>
+
+    <div id="side-menu-overlay" class="menu-overlay"></div>
+    <div id="side-menu" class="side-menu-panel">
+        <div class="side-menu-header">
+            <span class="side-logo"><i class="fa-solid fa-bars"></i> Nawigacja</span>
+            <span id="menu-close" class="close-btn">&times;</span>
+        </div>
+        
+        <ul class="side-menu-list">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> Start</a></li>
+            <li><a href="products.html"><i class="fa-solid fa-jar"></i> Sklep z miodami</a></li>
+            
+            <li><a href="kits.html"><i class="fa-solid fa-gift"></i> Zestawy Prezentowe</a></li>
+            
+            <li><a href="rescue.html"><i class="fa-solid fa-truck-medical"></i> Pogotowie Rójkowe</a></li>
+            <li><a href="gallery.html"><i class="fa-solid fa-images"></i> Galeria Zdjęć</a></li>
+            <li><a href="blog.html"><i class="fa-solid fa-newspaper"></i> Blog Pszczelarski</a></li>
+            <li><a href="przepisy.html"><i class="fa-solid fa-utensils"></i> Przepisy Cioci Agnieszki</a></li>
+            
+            <li><a href="my.html"><i class="fa-solid fa-user-group"></i> O nas</a></li>
+            
+            <li><a href="contact.html"><i class="fa-solid fa-address-book"></i> Kontakt</a></li>
+            <li><a href="linkmenu.html"><i class="fa-solid fa-link"></i> Wszystkie Linki</a></li>
+        </ul>
+    </div>
+
+    <main class="container">
+        <h1 class="section-title">Zestawy Prezentowe</h1>
+        <p style="text-align:center; color:#888; margin-bottom: 40px;">Podaruj bliskim słodką chwilę. Idealne na święta, urodziny i dla firm.</p>
+        
+        <div class="product-grid">
+            
+            <div class="card">
+                <img src="assets/images/zestawy/trio.jpg" class="product-img" onerror="this.src='https://placehold.co/600x600?text=Trio+Smakow'">
+                <h3>Trio Smaków</h3>
+                <p style="color:#aaa;">3 małe słoiczki w ozdobnym pudełku.</p>
+                <span style="display:block; margin:15px 0; font-size:1.2rem; font-weight:bold;">45.00 PLN</span>
+                <button class="btn-main" onclick="openKitDetails('trio')">ZOBACZ SZCZEGÓŁY</button>
+            </div>
+
+            <div class="card">
+                <img src="assets/images/zestawy/duz.jpg" class="product-img" onerror="this.src='https://placehold.co/600x600?text=Zestaw+Duzy'">
+                <h3>Zestaw Świąteczny</h3>
+                <p style="color:#aaa;">2 duże miody + pałeczka + świeczka.</p>
+                <span style="display:block; margin:15px 0; font-size:1.2rem; font-weight:bold;">95.00 PLN</span>
+                <button class="btn-main" onclick="openKitDetails('swiateczny')">ZOBACZ SZCZEGÓŁY</button>
+            </div>
+
+            <div class="card">
+                <img src="assets/images/zestawy/firmowy.jpg" class="product-img" onerror="this.src='https://placehold.co/600x600?text=Dla+Firm'">
+                <h3>Zestaw Firmowy</h3>
+                <p style="color:#aaa;">Elegancki prezent z Twoim logo (opcja).</p>
+                <span style="display:block; margin:15px 0; font-size:1.2rem; font-weight:bold;">Wycena ind.</span>
+                <button class="btn-main" onclick="openKitDetails('firmowy')">ZOBACZ SZCZEGÓŁY</button>
+            </div>
+            
+        </div>
+    </main>
+
+    <div id="kit-modal" class="custom-modal-overlay">
+        <div class="custom-modal-box">
+            <button class="close-custom-modal" onclick="closeKitModal()">×</button>
+            <div class="modal-split">
+                <div class="modal-left">
+                    <img src="" id="modal-img" class="modal-product-image">
+                </div>
+                <div class="modal-right">
+                    <h2 id="modal-title" class="modal-title"></h2>
+                    <span id="modal-price" style="font-size:1.5rem; font-weight:bold; display:block; margin-bottom:20px;"></span>
+                    <div id="modal-desc" style="color:#ddd; line-height:1.6; margin-bottom:30px;"></div>
+                    
+                    <button class="btn-main" style="width:100%;" onclick="window.location.href='contact.html'">
+                        <i class="fa-solid fa-envelope"></i> ZAMÓW ZESTAW
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <div class="logo">
+                <img src="assets/logo/logo.png" style="height:30px; margin-right:10px;">Pasieka Pod Gruszką
+            </div>
+            <p style="color:#888; font-size:0.9rem; margin-top: 15px;">
+                Naturalne miody z pasją.
+            </p>
+        </div>
+        
+        <div class="footer-col">
+            <h4 style="color:#fff; margin-bottom:15px;">Odbiory Osobiste</h4>
+            <p style="color:#888; font-size:0.9rem;">
+                <i class="fas fa-map-marker-alt" style="color:var(--c-gold); margin-right:5px;"></i> Rybie, ul. Mała 10, 05-090
+            </p>
+            <p style="color:var(--c-gold); font-weight:bold; margin: 10px 0;">
+                <i class="fas fa-phone" style="margin-right:5px;"></i> Tel: +48 506 224 982
+            </p>
+            <small style="color:#666;">Prosimy dzwonić przed przyjazdem.</small>
+        </div>
+        
+        <div class="footer-col">
+            <h4 style="color:#fff; margin-bottom:15px;">Linki</h4>
+            <ul style="list-style:none;">
+                <li style="margin-bottom:5px;">
+                    <a href="products.html" style="color:#888;"><i class="fas fa-chevron-right" style="font-size:0.8rem; margin-right:5px;"></i> Sklep</a>
+                </li>
+                <li style="margin-bottom:5px;">
+                    <a href="rescue.html" style="color:#888;"><i class="fas fa-chevron-right" style="font-size:0.8rem; margin-right:5px;"></i> Pogotowie Rójkowe</a>
+                </li>
+                <li style="margin-bottom:5px;">
+                    <a href="przepisy.html" style="color:#888;"><i class="fas fa-chevron-right" style="font-size:0.8rem; margin-right:5px;"></i> Przepisy</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+        <div class="footer-bottom" style="text-align:center; padding:20px; border-top:1px solid #222; font-size:0.85rem; color:#666;">
+            © 2025 Pasieka Pod Gruszką. Website designer & developer: 
+            <a href="https://github.com/wiktorzalewski" target="_blank" class="developer-signature" style="color:#fff; text-decoration:none; font-weight:bold; margin-left:5px;">Wiktor Zalewski</a>
+            <p> Błędy strony należy zgłaszać za pomocą wiadomości email na wiktorzalewski50@gmail.com </p>
+        
+        <div style="margin-top: 20px;">
+            <a href="login.php" class="admin-panel-link">
+                <i class="fas fa-tools"></i> Panel Admina
+            </a>
+        </div>
+    </div>
+</footer>
+
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        // BAZA DANYCH ZESTAWÓW
+        const kitsDatabase = {
+            'trio': {
+                title: 'Zestaw Trio Smaków',
+                price: '45.00 PLN',
+                img: 'assets/images/zestawy/trio.jpg',
+                desc: 'Idealny na drobny upominek. Zawiera 3 słoiczki po 130g: Miód Lipowy, Spadziowy i Rzepakowy. Zapakowane w ekologiczne pudełko z okienkiem i wełną drzewną.'
+            },
+            'swiateczny': {
+                title: 'Zestaw Świąteczny',
+                price: '95.00 PLN',
+                img: 'assets/images/zestawy/duz.jpg', 
+                desc: 'Bogaty zestaw pod choinkę. W środku: 2x500ml miodu (do wyboru), drewniana pałeczka do miodu, świeczka z wosku pszczelego. Całość przewiązana jutowym sznurkiem z ozdobną zawieszką.'
+            },
+            'firmowy': {
+                title: 'Zestaw dla Firm',
+                price: 'Wycena Indywidualna',
+                img: 'assets/images/zestawy/firmowy.jpg',
+                desc: 'Szukasz prezentów dla pracowników lub kontrahentów? Przygotujemy zestawy dopasowane do Twojego budżetu. Możliwość dodania logo firmy na etykiecie lub bileciku. Skontaktuj się z nami!'
+            }
+        };
+
+        function openKitDetails(id) {
+            const data = kitsDatabase[id];
+            if(!data) return;
+
+            document.getElementById('modal-title').innerText = data.title;
+            document.getElementById('modal-price').innerText = data.price;
+            document.getElementById('modal-desc').innerText = data.desc;
+            
+            const imgEl = document.getElementById('modal-img');
+            imgEl.src = data.img;
+            imgEl.onerror = function() { this.src = 'https://placehold.co/600x600?text=Zestaw'; };
+
+            const modal = document.getElementById('kit-modal');
+            modal.style.display = 'flex';
+            setTimeout(() => modal.classList.add('active'), 10);
+        }
+
+        function closeKitModal() {
+            const modal = document.getElementById('kit-modal');
+            modal.classList.remove('active');
+            setTimeout(() => modal.style.display = 'none', 300);
+        }
+        
+        window.onclick = function(e) {
+            if(e.target === document.getElementById('kit-modal')) closeKitModal();
+        }
+    </script>
+</body>
+</html>

@@ -2,68 +2,252 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="keywords" content="miód, pasieka, pszczoły, miód naturalny, miód lipowy, miód rzepakowy, rybie, raszyn ,warszawa, pasieka pod gruszką, pasja">
-    <meta name="description" content="Odkryj prawdziwy smak natury! Najlepsze miody z naszej rodzinnej pasieki Pod Gruszką. Naturalny miód!">
-    <meta name="robots" content="follow"/>
-    <meta name="author" content="Wiktor Zalewski" />
+    <meta name="keywords" content="galeria, pasieka, zdjęcia, pszczoły, ule, miód, natura, rybie">
+    <meta name="description" content="Zobacz naszą pasiekę od kuchni. Galeria zdjęć Pasieki Pod Gruszką.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pasieka Pod Gruszką</title>
+    <meta name="author" content="Wiktor Zalewski" />
+    <title>Galeria - Pasieka Pod Gruszką</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" href="assets/logo/favicon.ico">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- STYLIZACJA SIATKI GALERII --- */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 20px 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            aspect-ratio: 4/3; /* Utrzymuje prostokątny kształt kafelków */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(255, 193, 7, 0.3); /* Poświata w kolorze miodu */
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1); /* Delikatne przybliżenie przy najechaniu */
+        }
+
+        /* Ikona lupy przy najechaniu */
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay i {
+            font-size: 2rem;
+            color: #fff;
+        }
+
+        /* --- LIGHTBOX (MODAL DO PRZEGLĄDANIA) --- */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 99999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 85vh;
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            display: block;
+            margin: auto;
+        }
+
+        /* Przyciski nawigacji */
+        .lb-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lb-btn:hover {
+            background: var(--c-gold, #ffc107);
+            color: #000;
+        }
+
+        .lb-prev { left: 20px; }
+        .lb-next { right: 20px; }
+
+        .lb-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 3rem;
+            color: #888;
+            cursor: pointer;
+            transition: color 0.3s;
+            line-height: 1;
+            z-index: 1000;
+        }
+
+        .lb-close:hover {
+            color: var(--c-gold, #ffc107);
+        }
+
+        /* Licznik zdjęć */
+        .lb-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #888;
+            font-size: 0.9rem;
+            background: rgba(0,0,0,0.5);
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+
+        /* Ukrywanie strzałek na bardzo małych ekranach */
+        @media (max-width: 500px) {
+            .lb-prev, .lb-next {
+                width: 40px;
+                height: 40px;
+                background: rgba(0,0,0,0.3);
+            }
+            .lb-prev { left: 10px; }
+            .lb-next { right: 10px; }
+        }
+    </style>
 </head>
 <body>
-    <nav>
-    <div class="nav-container">
-        <a href="index.html" class="logo">
-            <img src="assets/logo/logo.png" alt="Logo"> Pod Gruszką
-        </a>
-
-        <ul class="menu desktop-links">
-            <li><a href="index.html"><i class="fa-solid fa-house"></i> Start</a></li>
-            <li><a href="products.html"><i class="fa-solid fa-store"></i> Sklep</a></li>
-            <li><a href="rescue.html" style="color:var(--c-orange);"><i class="fa-solid fa-truck-medical"></i> Pogotowie</a></li>
-            <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> Kontakt</a></li>
-        </ul>
-
-        <button id="menu-toggle" class="hamburger-btn">
-            <i class="fa-solid fa-bars"></i> <span class="btn-text">MENU</span>
-        </button>
-    </div>
-</nav>
-
-<div id="side-menu-overlay" class="menu-overlay"></div>
-<div id="side-menu" class="side-menu-panel">
-    <div class="side-menu-header">
-        <span class="side-logo"><i class="fa-solid fa-bars"></i> Nawigacja</span>
-        <span id="menu-close" class="close-btn">&times;</span>
-    </div>
+    <div id="transition-overlay"></div>
     
-    <ul class="side-menu-list">
-        <li><a href="index.html"><i class="fa-solid fa-house"></i> Start</a></li>
-        <li><a href="products.html"><i class="fa-solid fa-jar"></i> Sklep z miodami</a></li>
-        <li><a href="rescue.html"><i class="fa-solid fa-truck-medical"></i> Pogotowie Rójkowe</a></li>
-        <li><a href="gallery.html"><i class="fa-solid fa-images"></i> Galeria Zdjęć</a></li>
-        <li><a href="blog.html"><i class="fa-solid fa-newspaper"></i> Blog Pszczelarski</a></li>
-        <li><a href="przepisy.html"><i class="fa-solid fa-utensils"></i> Przepisy Cioci Agnieszki</a></li>
-        <li><a href="contact.html"><i class="fa-solid fa-address-book"></i> Kontakt</a></li>
-        <li><a href="linkmenu.html"><i class="fa-solid fa-link"></i> Wszystkie Linki</a></li>
-    </ul>
-</div>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/logo/logo.png" alt="Logo">Pasieka Pod Gruszką
+            </a>
+
+            <ul class="menu desktop-links">
+                <li><a href="index.html"><i class="fa-solid fa-house"></i> Start</a></li>
+                <li><a href="products.html"><i class="fa-solid fa-store"></i> Sklep</a></li>
+                <li><a href="rescue.html" style="color:var(--c-orange, #e67e22);"><i class="fa-solid fa-truck-medical"></i> Pogotowie</a></li>
+                <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> Kontakt</a></li>
+            </ul>
+
+            <button id="menu-toggle" class="hamburger-btn">
+                <i class="fa-solid fa-bars"></i> <span class="btn-text">MENU</span>
+            </button>
+        </div>
+    </nav>
+
+    <div id="side-menu-overlay" class="menu-overlay"></div>
+    <div id="side-menu" class="side-menu-panel">
+        <div class="side-menu-header">
+            <span class="side-logo"><i class="fa-solid fa-bars"></i> Nawigacja</span>
+            <span id="menu-close" class="close-btn">&times;</span>
+        </div>
+        
+        <ul class="side-menu-list">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> Start</a></li>
+            <li><a href="products.html"><i class="fa-solid fa-jar"></i> Sklep z miodami</a></li>
+            <li><a href="rescue.html"><i class="fa-solid fa-truck-medical"></i> Pogotowie Rójkowe</a></li>
+            <li><a href="gallery.html"><i class="fa-solid fa-images"></i> Galeria Zdjęć</a></li>
+            <li><a href="blog.html"><i class="fa-solid fa-newspaper"></i> Blog Pszczelarski</a></li>
+            <li><a href="przepisy.html"><i class="fa-solid fa-utensils"></i> Przepisy Cioci Agnieszki</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-address-book"></i> Kontakt</a></li>
+            <li><a href="linkmenu.html"><i class="fa-solid fa-link"></i> Wszystkie Linki</a></li>
+        </ul>
+    </div>
 
     <main class="container">
-        <h1 class="section-title">Migawki z Pasieki</h1>
+        <h1 class="section-title">Galeria Pasieki</h1>
+        <p style="text-align:center; color:#888; margin-bottom: 30px;">
+            Zobacz jak wygląda życie w naszej pasiece. Kliknij zdjęcie, aby je powiększyć.
+        </p>
         
-        <div id="gallery-container" class="gallery-grid">
+        <div id="gallery-grid" class="gallery-container">
             </div>
+
     </main>
+
+    <div id="lightbox" class="lightbox">
+        <span class="lb-close" onclick="closeLightbox()">&times;</span>
+        
+        <button class="lb-btn lb-prev" onclick="changeImage(-1)">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        
+        <div class="lightbox-content">
+            <img src="" alt="Powiększenie" id="lb-image" class="lightbox-img">
+        </div>
+        
+        <button class="lb-btn lb-next" onclick="changeImage(1)">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <div id="lb-counter" class="lb-counter">1 / 10</div>
+    </div>
 
     <footer>
     <div class="footer-grid">
         <div class="footer-col">
             <div class="logo">
-                <img src="assets/logo/logo.png" style="height:30px; margin-right:10px;"> Pod Gruszką
+                <img src="assets/logo/logo.png" style="height:30px; margin-right:10px;">Pasieka Pod Gruszką
             </div>
             <p style="color:#888; font-size:0.9rem; margin-top: 15px;">
                 Naturalne miody z pasją.
@@ -99,7 +283,7 @@
 
         <div class="footer-bottom" style="text-align:center; padding:20px; border-top:1px solid #222; font-size:0.85rem; color:#666;">
             © 2025 Pasieka Pod Gruszką. Website designer & developer: 
-            <a href="https://github.com/WikZal" target="_blank" class="developer-signature" style="color:#fff; text-decoration:none; font-weight:bold; margin-left:5px;">Wiktor Zalewski</a>
+            <a href="https://github.com/wiktorzalewski" target="_blank" class="developer-signature" style="color:#fff; text-decoration:none; font-weight:bold; margin-left:5px;">Wiktor Zalewski</a>
             <p> Błędy strony należy zgłaszać za pomocą wiadomości email na wiktorzalewski50@gmail.com </p>
         
         <div style="margin-top: 20px;">
@@ -111,5 +295,119 @@
 </footer>
 
     <script src="assets/js/main.js"></script>
+
+    <script>
+
+        const totalImages = 3; // <-- Zmień tę liczbę, gdy dodasz nowe zdjęcia!
+        const imagePath = 'assets/images/gallery/';
+        const imageExtension = '.jpg'; // Upewnij się, że zdjęcia to .jpg (małe litery)
+
+        let currentImageIndex = 1;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const galleryGrid = document.getElementById('gallery-grid');
+            
+            for (let i = 1; i <= totalImages; i++) {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                item.onclick = () => openLightbox(i); // Kliknięcie otwiera konkretne zdjęcie
+
+                // Tworzenie obrazka
+                const img = document.createElement('img');
+                img.src = `${imagePath}${i}${imageExtension}`;
+                img.alt = `Zdjęcie z pasieki nr ${i}`;
+                img.loading = "lazy"; // Optymalizacja ładowania
+                
+                // Obsługa błędu (np. gdy zapomnisz wgrać plik "5.jpg")
+                img.onerror = function() {
+                    this.parentElement.style.display = 'none'; // Ukryj kafelek jeśli brak zdjęcia
+                };
+
+                // Nakładka z lupą
+                const overlay = document.createElement('div');
+                overlay.className = 'gallery-overlay';
+                overlay.innerHTML = '<i class="fas fa-search-plus"></i>';
+
+                // Składanie całości
+                item.appendChild(img);
+                item.appendChild(overlay);
+                galleryGrid.appendChild(item);
+            }
+        });
+
+        // --- FUNKCJE LIGHTBOXA ---
+
+        function openLightbox(index) {
+            const lightbox = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lb-image');
+            
+            currentImageIndex = index;
+            updateLightboxImage();
+            
+            lightbox.style.display = 'flex';
+            setTimeout(() => {
+                lightbox.classList.add('active');
+            }, 10);
+            
+            // Zablokuj przewijanie strony pod spodem
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            
+            setTimeout(() => {
+                lightbox.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Odblokuj przewijanie
+            }, 300);
+        }
+
+        function changeImage(direction) {
+            currentImageIndex += direction;
+
+            // Zapętlanie galerii
+            if (currentImageIndex > totalImages) {
+                currentImageIndex = 1;
+            } else if (currentImageIndex < 1) {
+                currentImageIndex = totalImages;
+            }
+
+            updateLightboxImage();
+        }
+
+        function updateLightboxImage() {
+            const lbImg = document.getElementById('lb-image');
+            const counter = document.getElementById('lb-counter');
+            
+            // Efekt zanikania przy zmianie
+            lbImg.style.opacity = 0;
+            
+            setTimeout(() => {
+                lbImg.src = `${imagePath}${currentImageIndex}${imageExtension}`;
+                counter.innerText = `${currentImageIndex} / ${totalImages}`;
+                lbImg.style.opacity = 1;
+            }, 150);
+        }
+
+        // --- OBSŁUGA KLAWIATURY I KLIKNIĘĆ W TŁO ---
+        
+        window.addEventListener('keydown', (e) => {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.style.display === 'flex') {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowRight') changeImage(1);
+                if (e.key === 'ArrowLeft') changeImage(-1);
+            }
+        });
+
+        // Zamknięcie po kliknięciu w czarne tło (ale nie w zdjęcie)
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') {
+                closeLightbox();
+            }
+        });
+
+    </script>
 </body>
 </html>

@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Błąd 404 | Nie znaleziono strony</title>
+    <title>404 | Pusto w ulu - Pasieka Pod Gruszką</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
-        /* [Pomijamy pelne style dla czytelnosci, uzywamy twojej palety] */
         :root {
             --c-bg-base: #020202; 
             --c-text-main: #e0e0e0;
             --c-amber: #FFB000; 
             --c-dark-orange: #CC5500; 
-            --shadow-amber: 0 0 25px rgba(255, 176, 0, 0.4);
+            --shadow-amber: 0 0 35px rgba(255, 176, 0, 0.25);
         }
 
         body {
             background-color: var(--c-bg-base);
+            /* Subtelny wzór plastra miodu w tle */
+            background-image: radial-gradient(circle at 50% 50%, #111 0%, #020202 70%);
             color: var(--c-text-main);
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -25,72 +28,163 @@
             text-align: center;
             height: 100vh;
             margin: 0;
+            overflow: hidden; /* Żeby animacje nie robiły scrollbarów */
         }
 
         .container {
+            position: relative;
             max-width: 600px;
-            padding: 40px;
-            background-color: rgba(15, 15, 15, 0.9);
-            border-radius: 10px;
-            border: 1px solid var(--c-amber);
-            box-shadow: var(--shadow-amber);
+            padding: 50px 30px;
+            /* Usunąłem tło ramki, żeby było bardziej nowocześnie i "przestrzennie", 
+               ale zostawiłem delikatną poświatę */
+            z-index: 10;
+        }
+
+        /* Animacja lewitującej pszczoły */
+        @keyframes floatBee {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .bee-icon {
+            font-size: 8rem;
+            color: var(--c-amber);
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(255, 176, 0, 0.6);
+            animation: floatBee 4s ease-in-out infinite;
+            display: inline-block;
         }
 
         h1 {
-            font-size: 5rem;
-            color: var(--c-dark-orange);
+            font-size: 8rem;
+            line-height: 1;
+            font-weight: 900;
+            color: transparent;
+            /* Efekt złotego gradientu na tekście */
+            background: linear-gradient(to bottom, var(--c-amber), var(--c-dark-orange));
+            -webkit-background-clip: text;
+            background-clip: text;
             margin: 0;
-            text-shadow: 0 0 10px var(--c-dark-orange);
+            position: relative;
+            z-index: 2;
         }
 
         h2 {
-            font-size: 1.8rem;
-            color: var(--c-amber);
+            font-size: 2rem;
+            color: #fff;
             margin-top: 10px;
             margin-bottom: 20px;
+            font-weight: 300;
         }
 
         p {
             font-size: 1.1rem;
-            margin-bottom: 30px;
+            color: #aaa;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .home-button {
-            display: inline-block;
-            background-color: var(--c-amber);
-            color: #000; 
+        /* Kontener na przyciski */
+        .actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
             text-decoration: none;
-            padding: 12px 25px;
-            border-radius: 5px;
+            padding: 12px 30px;
+            border-radius: 50px;
             font-weight: bold;
-            transition: background-color 0.3s, box-shadow 0.3s;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            border: 2px solid transparent;
         }
 
-        .home-button:hover {
-            background-color: var(--c-dark-orange); 
-            color: #fff; 
-            box-shadow: 0 0 15px var(--c-dark-orange);
+        /* Główny przycisk */
+        .btn-primary {
+            background-color: var(--c-amber);
+            color: #000;
+            box-shadow: 0 5px 15px rgba(255, 176, 0, 0.3);
         }
 
-        .icon-404 {
-            font-size: 3rem;
+        .btn-primary:hover {
+            background-color: var(--c-dark-orange);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(204, 85, 0, 0.4);
+        }
+
+        /* Drugorzędny przycisk (outline) */
+        .btn-secondary {
+            border-color: #444;
+            color: #ccc;
+            background: transparent;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--c-amber);
             color: var(--c-amber);
-            margin-bottom: 20px;
         }
+
+        /* Dekoracyjne kółka w tle (rozmyte) */
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 1;
+            opacity: 0.4;
+        }
+        .c1 {
+            width: 300px; height: 300px;
+            background: var(--c-dark-orange);
+            top: -100px; left: -100px;
+        }
+        .c2 {
+            width: 200px; height: 200px;
+            background: var(--c-amber);
+            bottom: 50px; right: -50px;
+        }
+
     </style>
 </head>
 <body>
+
+    <div class="bg-circle c1"></div>
+    <div class="bg-circle c2"></div>
+
     <div class="container">
-        <div class="icon-404">🐝</div> 
+        
+        
+        <div class="bee-icon">
+            <i class="fa-solid fa-bug"></i> </div>
+
         <h1>404</h1>
-        <h2>Ups! Nie znaleziono tej podstrony.</h2>
+        
+        <h2>Ups! Pusto w ulu...</h2>
+        
         <p>
-            Strona, której szukasz, mogła zostać przeniesiona lub nigdy nie istniała. 
-            Wygląda na to, że zbłądziłeś/aś.
+            Wygląda na to, że ta strona odleciała na inną łąkę. 
+            Strona, której szukasz, nie istnieje lub została przeniesiona.
         </p>
-        <a href="index.html" class="home-button">
-            POWRÓT NA STRONĘ GŁÓWNĄ
-        </a>
+
+        <div class="actions">
+            <a href="index.html" class="btn btn-primary">
+                <i class="fa-solid fa-house"></i> WRÓĆ DO PASIEKI
+            </a>
+            <a href="products.html" class="btn btn-secondary">
+                <i class="fa-solid fa-jar"></i> KUP MIÓD
+            </a>
+             <a href="contact.html" class="btn btn-secondary">
+                <i class="fa-solid fa-envelope"></i> KONTAKT
+            </a>
+        </div>
     </div>
+
 </body>
 </html>
