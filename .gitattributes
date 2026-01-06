@@ -3,3 +3,10 @@
 
 # Zignoruj pliki konfiguracyjne nginx w statystykach
 nginx/* linguist-documentation=true
+
+# Traktuj konfigurację Nginxa jako dane/dokumentację, a nie kod
+nginx/**/* linguist-vendored
+nginx/**/* linguist-documentation
+
+# Jeśli masz pliki .sql, je też możesz wykluczyć, żeby nie psuły wykresu
+sql/*.sql linguist-vendored
